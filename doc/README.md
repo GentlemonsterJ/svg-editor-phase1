@@ -120,7 +120,7 @@ package "infrastructure" {
 | 9. 一致性检查 | 原先只预留读入时的根 id，后续 create/group 仍可能重复使用它 | 将根 id 也加入 SvgDocument 的新增/分组冲突检查，并添加回归测试 |
 | 10. 完整验证 | 单命令成功不足以证明历史完整性 | 114 条混合编辑全部撤销再重做，比较初始/最终 SVG；另用真实子进程和磁盘文件回放案例 |
 
-Git 实际按骨架、domain、application、IO/REPL、测试与修正、交付文档分次提交；以 `git log --oneline --decorate` 为准。最终校验后创建本地 `final` 标签。没有远程账户/仓库地址，未声称已完成远程推送；也未在未知截止时间的情况下声称符合截止日期。
+Git 实际按骨架、domain、application、IO/REPL、测试与修正、交付文档分次提交；以 `git log --oneline --decorate` 为准。最初交付包时尚无远程账户/仓库信息，之后用户指定 `GentlemonsterJ/svg-editor-phase1` 并连接 GitHub，因此追加文档提交记录正式提交目标。最终版本标记为 `final`，远程上传以原始 Git 提交对象和标签核对为准；截止日期未提供，不声称已经符合未知的截止时间。
 
 ## 一致性自查
 
@@ -145,4 +145,4 @@ Git 实际按骨架、domain、application、IO/REPL、测试与修正、交付�
 
 完整需求映射见 [ACCEPTANCE.md](ACCEPTANCE.md)。[validation.txt](validation.txt) 记录交付前测试和依赖检查输出。
 
-已知取舍：历史保留完整深拷贝，内存随编辑次数与文档大小增长；文档查找目前用树遍历，适合实验规模，后续可增加 id 索引。SVG 支持基本子集及有限变换，超出范围明确失败。课程要求的远程推送必须在提供账户/仓库后完成；本地包保留 Git 历史，但本地标签不能代替远程提交。
+已知取舍：历史保留完整深拷贝，内存随编辑次数与文档大小增长；文档查找目前用树遍历，适合实验规模，后续可增加 id 索引。SVG 支持基本子集及有限变换，超出范围明确失败。远程提交目标为 [GentlemonsterJ/svg-editor-phase1](https://github.com/GentlemonsterJ/svg-editor-phase1)；验收时应检查远程提交和 final 标签，本地包保留 Git 历史但不能代替远程提交。

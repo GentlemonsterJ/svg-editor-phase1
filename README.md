@@ -72,12 +72,12 @@ npm run test:coverage
 - 验收对照：[doc/ACCEPTANCE.md](doc/ACCEPTANCE.md)。
 - `examples/flowchart.cli` / `history.cli` 可回放；对应 `.svg` 可直接在浏览器中查看。
 - 工程包包含 `.git/`，保留分步提交与 `final` 标签。用 `git log --oneline --decorate` 查看，不要删除 `.git/` 后再提交成一个大包。
-- 本次未连接远程账户，远程仓库和截止时间未提供，**尚未推送**；本地标签不能代替远程提交要求。
+- 远程提交目标：[GentlemonsterJ/svg-editor-phase1](https://github.com/GentlemonsterJ/svg-editor-phase1)。以该仓库的 `main` 和 `final` 标签为准；本地标签不能代替远程提交要求。截止时间以课程通知为准。
 
-解压后，在你创建的空 GitHub / Gitee 仓库上完成：
+如需从保留历史的工程包手动同步到该仓库，可使用以下命令（已有 origin 时跳过第一条）：
 
 ```bash
-git remote add origin <你的远程仓库地址>
+git remote add origin https://github.com/GentlemonsterJ/svg-editor-phase1.git
 git push -u origin main
 git push origin final
 ```

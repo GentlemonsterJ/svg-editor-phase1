@@ -20,6 +20,6 @@
 | REPL 与脚本 | `cli/CliRunner.ts` | 子进程回放、提示符、空行、颜色、注释、引号路径、错误退出码 |
 | 依赖方向与范式 | `scripts/check-architecture.mjs` | 57 个 TS 文件 / 168 处静态 import；无违规、无 switch、无顶层过程函数 |
 | 历史完整性 | `history-property.test.ts` | 114 条混合编辑全部 undo 回到空文档、全部 redo 回到最终状态 |
-| Git 过程与 final | `.git/` | 分步提交；交付前设置 final；远程推送尚待账户/仓库 |
+| Git 过程与 final | `.git/` | 分步提交；最终版本标记 final；核对远程 main/final 与本地提交一致 |
 
 测试中的内存文件适配器只用于确定性模拟读写失败；真实 CLI 与文件系统另有集成测试，不以替身测试替代实际磁盘验证。
