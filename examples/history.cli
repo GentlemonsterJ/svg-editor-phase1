@@ -1,0 +1,19 @@
+# Show grouping, sibling order, nested ungroup and undo as complete units.
+init 400 240
+create g scene
+create rect a 20 40 80 50 #4a90d9 in scene
+create circle b 160 65 25 #f5a623 in scene
+create text caption 20 140 "Command + Composite" in scene
+group pair b a
+tree
+move pair 10 20
+scale pair 0.8
+undo
+redo
+back caption
+ungroup pair
+undo
+delete pair
+undo
+tree
+save examples/history.svg

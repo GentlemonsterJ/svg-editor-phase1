@@ -47,6 +47,8 @@ export class SvgDocument {
   add(shape: Shape, parent: Shape | null = null, index?: number): void {
     if (parent && (!this.all().includes(parent) || !parent.isContainer)) throw new EditorError(`not a container: ${parent.id}`);
     const existing = new Set(this.all().map(node => node.id));
+    const rootId = this.rootMetadata.get('id');
+    if (rootId) existing.add(rootId);
     const visit = (node: Shape): void => {
       if (existing.has(node.id)) throw new EditorError(`id already exists: ${node.id}`);
       existing.add(node.id); node.children.forEach(visit);
@@ -58,7 +60,7 @@ export class SvgDocument {
     const shape = this.require(id); this.detach(shape); return shape;
   }
   group(id: string, ids: readonly string[]): Group {
-    if (this.find(id)) throw new EditorError(`id already exists: ${id}`);
+    if (this.find(id) || this.rootMetadata.get('id') === id) throw new EditorError(`id already exists: ${id}`);
     if (!ids.length) throw new EditorError('group requires at least one shape');
     if (new Set(ids).size !== ids.length) throw new EditorError('duplicate group member');
     const nodes = ids.map(member => this.require(member));

@@ -87,9 +87,11 @@ export class SvgXmlCodec implements SvgCodec {
     const xml = new DOMImplementation().createDocument(this.namespace, 'svg', null);
     const root = xml.documentElement!;
     root.setAttribute('xmlns', this.namespace);
-    for (const [name, value] of document.attributes) root.setAttribute(name, value);
     root.setAttribute('width', String(document.width)); root.setAttribute('height', String(document.height));
-    if (!root.hasAttribute('viewBox')) root.setAttribute('viewBox', `0 0 ${document.width} ${document.height}`);
+    root.setAttribute('viewBox', document.attributes.get('viewBox') ?? `0 0 ${document.width} ${document.height}`);
+    for (const [name, value] of document.attributes) {
+      if (!['xmlns', 'width', 'height', 'viewBox'].includes(name)) root.setAttribute(name, value);
+    }
     const append = (shape: Shape, parent: Element, depth: number): void => {
       parent.appendChild(xml.createTextNode(`\n${'  '.repeat(depth)}`));
       const element = xml.createElementNS(this.namespace, shape.type);

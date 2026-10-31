@@ -13,9 +13,14 @@ export class ShapePresenter {
   }
   show(document: SvgDocument, id: string): readonly string[] {
     const shape = document.require(id);
-    const attrs = [...shape.attributes].filter(([name]) => name !== 'id').map(([key, value]) => `${key}=${value}`);
-    if (shape.textContent !== null) attrs.push(`text=${JSON.stringify(shape.textContent)}`);
-    return [`${shape.label}  parent=${document.parentLabel(shape)}`, ...attrs.map(attr => `  ${attr}`)];
+    const styles = new Set(['fill', 'stroke', 'stroke-width']);
+    const details: string[] = []; const presentation: string[] = [];
+    for (const [key, value] of shape.attributes) {
+      if (key !== 'id') (styles.has(key) ? presentation : details).push(`${key}=${value}`);
+    }
+    if (shape.textContent !== null) details.push(`text=${JSON.stringify(shape.textContent)}`);
+    return [`${shape.label}  parent=${document.parentLabel(shape)}`,
+      ...[details.join(' '), presentation.join(' ')].filter(Boolean).map(line => `  ${line}`)];
   }
   private branches(children: readonly Shape[], prefix: string, lines: string[]): void {
     children.forEach((child, index) => {
