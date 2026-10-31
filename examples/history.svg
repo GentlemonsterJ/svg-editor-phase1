@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240">
+  <g id="scene">
+    <text id="caption" x="20" y="140">Command + Composite</text>
+    <g id="pair">
+      <rect fill="#4a90d9" id="a" x="24" y="48" width="64" height="40"/>
+      <circle fill="#f5a623" id="b" cx="136" cy="68" r="20"/>
+    </g>
+  </g>
+</svg>

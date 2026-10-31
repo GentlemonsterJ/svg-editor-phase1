@@ -1,0 +1,29 @@
+@startuml
+package "cli" {
+  [CliRunner]
+  [main / composition root]
+}
+package "application" {
+  [commands]
+  [CommandHistory]
+  [ports]
+}
+package "domain" {
+  [SvgDocument]
+  [Shape / Group / leaves]
+}
+package "infrastructure" {
+  [SvgXmlCodec]
+  [NodeFileGateway]
+}
+[CliRunner] --> [commands]
+[commands] --> [CommandHistory]
+[commands] --> [ports]
+[commands] --> [SvgDocument]
+[SvgDocument] --> [Shape / Group / leaves]
+[SvgXmlCodec] ..|> [ports]
+[NodeFileGateway] ..|> [ports]
+[SvgXmlCodec] --> [Shape / Group / leaves]
+[main / composition root] --> [SvgXmlCodec]
+[main / composition root] --> [NodeFileGateway]
+@enduml

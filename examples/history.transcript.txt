@@ -1,0 +1,28 @@
+canvas 400x240 created
+g#scene created
+rect#a created in g#scene
+circle#b created in g#scene
+text#caption created in g#scene
+g#pair created with 2 children
+svg (400x240)
+└── g#scene
+    ├── g#pair
+    │   ├── rect#a  x=20 y=40 w=80 h=50  fill=#4a90d9
+    │   └── circle#b  cx=160 cy=65 r=25  fill=#f5a623
+    └── text#caption  (20,140) "Command + Composite"
+g#pair moved by (10,20)
+g#pair scaled by 0.8
+undone: g#pair scaled by 0.8
+redone: g#pair scaled by 0.8
+text#caption sent to back
+g#pair ungrouped (2 children promoted)
+undone: g#pair ungrouped (2 children promoted)
+g#pair deleted
+undone: g#pair deleted
+svg (400x240)
+└── g#scene
+    ├── text#caption  (20,140) "Command + Composite"
+    └── g#pair
+        ├── rect#a  x=24 y=48 w=64 h=40  fill=#4a90d9
+        └── circle#b  cx=136 cy=68 r=20  fill=#f5a623
+saved to examples/history.svg (5 elements)
