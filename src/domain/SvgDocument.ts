@@ -81,7 +81,6 @@ export class SvgDocument {
   }
   ungroup(id: string): number {
     const group = this.requireContainer(id);
-    if (group.attributes.has('data-kind')) throw new EditorError(`cannot ungroup composite shape: ${id}`);
     const parent = this.parentOf(group);
     if (!parent) throw new EditorError(`cannot ungroup top-level container: ${id}`);
     const index = parent.children.indexOf(group);
